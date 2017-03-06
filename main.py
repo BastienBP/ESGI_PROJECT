@@ -20,7 +20,7 @@ access_token_secret = tokens['ACCESS_SECRET']
 
 ################################################################################
 
-TOPIC = 'my-topic'
+TOPIC = 'twitter_sante2'
 
 def execCmd(cmd):
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -31,7 +31,7 @@ def execCmd(cmd):
     return retVal,retText
 
 def get_producer(cluster_list):
-	producer = KafkaProducer(bootstrap_servers= cluster_list)
+	producer = KafkaProducer(bootstrap_servers= cluster_list, acks ='1', retries = 3)
 	return producer
 
 def produce(producer, topic, msg):
@@ -42,7 +42,7 @@ def produce(producer, topic, msg):
         print str(e)
         return str(e)
 
-cmd = 'kafka-topics.sh --create --zookeeper 54.149.87.255:2181 --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
+cmd = 'kafka-topics.sh --create --zookeeper ip-172-31-15-110.us-west-2.compute.internal:2181 --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
 t, d = execCmd(cmd)
 if t is 0 and d:
 	print 'Topic well created..'
