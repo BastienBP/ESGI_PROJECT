@@ -62,6 +62,13 @@ def get_consumer_kafkaConsumer_seek(cfg_offset):
 def config_parser():
     return ConfigParser.ConfigParser()
 
+def config_parser_first_launch():
+    cfg = config_parser()
+    cfg.add_section("OFFSET")
+    cfg.set("OFFSET","last_offset","0")
+    cfg.set("OFFSET","is_reloaded?","false")
+    cfg.write(open("offset.cfg",'w'))
+
 def write_offset(offset):
     cfg = config_parser()
     cfg.add_section("OFFSET")
@@ -137,10 +144,6 @@ def get_tweet(consumer):
                                 messages = []
                                 write_offset(current_offset)
 
-                        		#cur.execute("create table if not exists twitter_grippe(ID varchar(255), tweet string, date_month string)")
-                        		#cur.execute('INSERT INTO table twitter_grippe values ('{}','{}','{}')".format(message.offset, message.value, time.strftime("%Y%m")))
-
-
                 elif not message:
                     print 'No message'
                 else:
@@ -153,6 +156,7 @@ def get_tweet(consumer):
 
 
 if __name__ == '__main__':
+        config_parser_first_launch()
         consumer = get_consumer_kafkaConsumer()
 
         id, message, date_month = get_tweet(consumer)
