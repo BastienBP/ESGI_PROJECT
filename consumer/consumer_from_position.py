@@ -94,6 +94,7 @@ def get_tweet(consumer):
             for message in consumer:
                 if message is not None:
                     current_offset = message.offset
+                    print current_offset
                     logger.info('retrieving message n_° %s' % current_offset)
                     with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
                         logger.info("Connected to hive")
