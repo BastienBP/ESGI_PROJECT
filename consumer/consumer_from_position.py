@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import logging
+import logging.config
+from logging.handlers import RotatingFileHandler
 import inspect
 import time
 import ConfigParser
@@ -23,6 +26,18 @@ broker2 = data['cluster']['broker2']
 broker3 = data['cluster']['broker3']
 topic = TopicPartition(topic,0)
 
+####### LOGGING CONFIG #######
+logging.basicConfig()
+logger = logging.getLogger('consumer')
+logger.setLevel(logging.INFO)#ERROR
+logger.info("initialize logger")
+logger.propagate = False
+fh = RotatingFileHandler(log_file, maxBytes = 2*1024*1024, backupCount = 5)# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+logger.info("initialize logger finished")
+############################
 
 def get_consumer_kafkaConsumer():
         consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1,broker2,broker3])
@@ -65,6 +80,7 @@ def get_tweet(consumer):
             ############
             for message in consumer:
                 if message is not None:
+                    logger.info('%d messages available from Kafka' % len(consumer))
                     current_offset = message.offset
 
 
@@ -74,7 +90,7 @@ def get_tweet(consumer):
                         with conn.cursor() as cur:
                             #Show databases
                             print cur.getDatabases()
-                            print "retrieving messages"
+                            logger.info('retrieving messages...')
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
@@ -94,6 +110,7 @@ def get_tweet(consumer):
 
             for message in get_consumer_kafkaConsumer_seek(cfg_offset):
                 if message is not None:
+                    logger.info('%d messages available from Kafka' % len(get_consumer_kafkaConsumer_seek(cfg_offset)))
                     current_offset = message.offset
                     print current_offset
                         #print message.offset, message.value.replace('"','\"'), time.strftime("%Y%m")
@@ -102,7 +119,7 @@ def get_tweet(consumer):
                         with conn.cursor() as cur:
                             #Show databases
                             print cur.getDatabases()
-                            print "retrieving messages"
+                            logger.info('retrieving messages...')
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
@@ -123,6 +140,7 @@ def get_tweet(consumer):
                 elif not message:
                     print 'No message'
                 else:
+
                     print 'Something else happened..'
     except KeyboardInterrupt as e:
             pass

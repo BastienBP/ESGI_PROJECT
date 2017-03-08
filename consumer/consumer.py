@@ -3,6 +3,9 @@
 
 import time
 
+import logging
+import logging.config
+from logging.handlers import RotatingFileHandler
 from pykafka.common import OffsetType
 from kafka import KafkaConsumer
 from kafka import TopicPartition
