@@ -42,7 +42,7 @@ logger.info("initialize logger finished")
 ############################
 
 def get_consumer_kafkaConsumer():
-        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1,broker2,broker3])
+        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port])
         consumer.assign([topic])
         consumer.commit_async()
         consumer.poll()
@@ -51,7 +51,7 @@ def get_consumer_kafkaConsumer():
         return consumer
 
 def get_consumer_kafkaConsumer_seek(cfg_offset):
-        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1,broker2,broker3])
+        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port])
         consumer.assign([topic])
         position = consumer.position(topic)
         print cfg_offset
