@@ -17,6 +17,7 @@ host_hive = data['host_hive']
 user_hive = data['user_hive']
 password_hive = data['password_hive']
 database_hive = data['database_hive']
+table_hive = data['table_hive']
 broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']
 broker3 = data['cluster']['broker3']
@@ -79,9 +80,9 @@ def get_tweet(consumer):
                             print len(messages)
                             if len(messages)==5:
                                 #print messages
-                                cur.execute("create table if not exists kafka(ID varchar(255), value string, time string)")
+                                cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                                 messages =  str(messages).replace('[','').replace(']','')
-                                stmt = "INSERT INTO kafka VALUES " + messages
+                                stmt = "INSERT INTO "+table_hive+" VALUES " + messages
                                 print stmt
                                 cur.execute(stmt)
                                 messages = []
@@ -134,4 +135,3 @@ if __name__ == '__main__':
 
         id, message, date_month = get_tweet(consumer)
         print id, message, date_month
-

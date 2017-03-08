@@ -1,13 +1,13 @@
 {
-    "topic" : "twitter_sante2", 
+    "topic" : "twitter_sante2",
     "host_hive": "localhost",
     "user_hive": "hive",
     "password_hive": "admin",
     "database_hive": "default",
+    "table_hive" : "kafka",
     "cluster":{
         "broker1":"ip-172-31-15-110.us-west-2.compute.internal:6667",
         "broker2":"ip-172-31-15-237.us-west-2.compute.internal:6667",
         "broker3":"ip-172-31-5-184.us-west-2.compute.internal:6667"
     }
 }
-
