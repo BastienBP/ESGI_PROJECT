@@ -15,6 +15,7 @@ import json
 
 with open("params.json") as f:
     data = json.load(f)
+server_port = data['server_port']
 lenght_bloc = data['lenght_bloc']
 log_file = data['log_file']['consumer_from_position']
 topic = data['topic']

@@ -15,6 +15,7 @@ import json
 with open("params.json") as f:
     data = json.load(f)
 
+server_port = data['server_port']
 table_hive = data['table_hive']
 lenght_bloc = data['lenght_bloc']
 log_file = data['log_file']['consumer']
@@ -44,7 +45,7 @@ topic = TopicPartition(topic,0)
 
 
 def get_consumer_kafkaConsumer():
-        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1,broker2,broker3])
+        consumer = KafkaConsumer(group_id='my-group1',bootstrap_servers=[broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port])
         consumer.assign([topic])
         position = consumer.position(topic)
         consumer.seek_to_end(topic)
