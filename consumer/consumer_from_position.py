@@ -118,7 +118,8 @@ def get_tweet(consumer):
                             #Show databases
                             current_database = cur.getDatabases()
                             str(current_database)
-                            logger.info("Current database:"+current_database)
+                            print type(current_database)
+                            logger.info("Current database")
 
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
