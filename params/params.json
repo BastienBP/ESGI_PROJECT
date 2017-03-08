@@ -6,8 +6,8 @@
     "database_hive": "default",
     "lenght_bloc" : 5,
     "log_file":{
-        "consumer_from_position":"../logger/consumer_from_position.out",
-        "consumer": "../logger/consumer.out"
+        "consumer_from_position":"../logger_kafka/consumer_from_position.out",
+        "consumer": "../logger_kafka/consumer.out"
     },
     "table_hive" : "kafka",
     "cluster":{
