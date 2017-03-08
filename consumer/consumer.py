@@ -16,6 +16,7 @@ with open("params.json") as f:
     data = json.load(f)
 
 table_hive = data['table_hive']
+lenght_bloc = data['lenght_bloc']
 log_file = data['log_file']['consumer']
 topic = data['topic']
 host_hive = data['host_hive']
@@ -65,7 +66,7 @@ def get_tweet(consumer):
                         #while len(messages)<31:
                         messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                         print len(messages)
-                        if len(messages)==5:
+                        if len(messages)==lenght_bloc:
                             #print messages
                             cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                             messages = ','.join(str(messages[i]) for i in range(len(messages)))
