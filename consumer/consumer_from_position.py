@@ -81,7 +81,7 @@ def get_tweet(consumer):
             ############
             for message in consumer:
                 if message is not None:
-                    logger.info('%d messages available from Kafka' % len(consumer))
+                    logger.info('messages available from Kafka')
                     current_offset = message.offset
 
 
@@ -111,7 +111,7 @@ def get_tweet(consumer):
 
             for message in get_consumer_kafkaConsumer_seek(cfg_offset):
                 if message is not None:
-                    logger.info('%d messages available from Kafka' % len(get_consumer_kafkaConsumer_seek(cfg_offset)))
+                    logger.info('messages available from Kafka')
                     current_offset = message.offset
                     print current_offset
                         #print message.offset, message.value.replace('"','\"'), time.strftime("%Y%m")
