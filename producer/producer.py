@@ -17,6 +17,7 @@ with open("../params/params.json") as f:
 broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']
 broker3 = data['cluster']['broker3']
+log_file = data['log_file']['producer']
 server_port = data['server_port']
 zookieper_port = data['zookieper_port']
 consumer_key = tokens['CONSUMER_KEY']
@@ -25,7 +26,18 @@ access_token = tokens['ACCESS_TOKEN']
 access_token_secret = tokens['ACCESS_SECRET']
 TOPIC = data['topic']
 
-################################################################################
+####### LOGGING CONFIG #######
+logging.basicConfig()
+logger = logging.getLogger('producer')
+logger.setLevel(logging.INFO)#ERROR
+logger.info("initialize logger")
+logger.propagate = False
+fh = RotatingFileHandler(log_file, maxBytes = 2*1024*1024, backupCount = 5)# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+logger.info("initialize logger finished")
+############################
 
 
 
@@ -52,10 +64,14 @@ def produce(producer, topic, msg):
 cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':'+zookieper_port+' --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
 t, d = execCmd(cmd)
 if t is 0 and d:
+    logger.info("topic well Created")
 	print 'Topic well created..'
 if not d:
+    logger.info('%s Already Created' % TOPIC)
 	print TOPIC + ' already created..'
 print "Connection to 104.199.104.122:9092"
+logger.info('Connection to %s' % broker1)
+
 cluster_list = [broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port]
 producer = get_producer(cluster_list)
 

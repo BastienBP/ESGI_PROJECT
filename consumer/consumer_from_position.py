@@ -31,7 +31,7 @@ topic = TopicPartition(topic,0)
 
 ####### LOGGING CONFIG #######
 logging.basicConfig()
-logger = logging.getLogger('consumer')
+logger = logging.getLogger('consumer_from_position')
 logger.setLevel(logging.INFO)#ERROR
 logger.info("initialize logger")
 logger.propagate = False
