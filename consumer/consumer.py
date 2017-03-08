@@ -14,7 +14,7 @@ import json
 
 with open("params.json") as f:
     data = json.load(f)
-log_file = data['log_file']['consumer_from_position']
+log_file = data['log_file']['consumer']
 topic = data['topic']
 host_hive = data['host_hive']
 user_hive = data['user_hive']
