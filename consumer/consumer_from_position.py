@@ -89,6 +89,7 @@ def get_tweet(consumer):
             position = consumer.position(topic)
             #first_offset = consumer.next()
             first_offset = consumer.poll()
+            print first_offset
             first_offset = first_offset.offset
             write_offset(first_offset)
             ############
