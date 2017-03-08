@@ -61,12 +61,13 @@ def produce(producer, topic, msg):
     try:
         producer.send(topic, msg, partition=0, timestamp_ms=datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'))
         print 'Still sending to the partition 0'
-        logger.info("Send message n_° %s" %msg)
-        print msg
+        logger.info("message well sent")
+
 
     except Exception as e:
         print str(e)
         return str(e)
+        logger.info("Error %s" %e)
 
 cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':'+zookieper_port+' --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
 t, d = execCmd(cmd)
