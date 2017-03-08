@@ -65,10 +65,10 @@ cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':'+zookieper_port+' --rep
 t, d = execCmd(cmd)
 if t is 0 and d:
     logger.info("topic well Created")
-	print 'Topic well created..'
+    print 'Topic well created..'
 if not d:
     logger.info('%s Already Created' % TOPIC)
-	print TOPIC + ' already created..'
+    print TOPIC + ' already created..'
 print "Connection to 104.199.104.122:9092"
 logger.info('Connection to %s' % broker1)
 
