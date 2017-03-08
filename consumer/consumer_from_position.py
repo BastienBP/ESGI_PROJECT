@@ -90,8 +90,9 @@ def get_tweet(consumer):
             first_offset = consumer.next()
             first_offset = first_offset.offset
             write_offset(first_offset)
+            cfg_offset = cfg.get("OFFSET","last_offset")
             ############
-            for message in consumer:
+            for message in get_consumer_kafkaConsumer_seek(cfg_offset):
                 if message is not None:
                     current_offset = message.offset
                     print current_offset
