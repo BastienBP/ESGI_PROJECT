@@ -1,5 +1,5 @@
 {
-    "topic" : "twitter_sante2",
+    "topic" : "kafka_test",
     "host_hive": "localhost",
     "user_hive": "hive",
     "password_hive": "admin",
