@@ -31,7 +31,7 @@ def execCmd(cmd):
     return retVal,retText
 
 def get_producer(cluster_list):
-	producer = KafkaProducer(bootstrap_servers= cluster_list, acks ='1', retries = 3)
+	producer = KafkaProducer(bootstrap_servers= cluster_list)
 	return producer
 
 def produce(producer, topic, msg):
