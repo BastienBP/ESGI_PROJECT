@@ -78,21 +78,14 @@ if not d:
     logger.info('%s Already Created' % TOPIC)
     print TOPIC + ' already created..'
 print "Connection to 104.199.104.122:9092"
-logger.info('Connection to %s' % broker1)
+logger.info('Connection to %s' %broker1)
 
 cluster_list = [broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port]
 producer = get_producer(cluster_list)
 
-
-
-# This is the listener, resposible for receiving data
 class StdOutListener(tweepy.StreamListener):
     def on_data(self, data):
-        # Twitter returns data in JSON format - we need to decode it first
         decoded = json.loads(data)
-
-        # Also, we convert UTF-8 to ASCII ignoring all bad characters sent by users
-        #print '@%s: %s' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))
         print type(decoded['user']['screen_name'])
         msg = '@%s: %s' %(decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))
         produce(producer, TOPIC, msg.encode())
@@ -109,15 +102,5 @@ if __name__ == '__main__':
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     print "Showing all new tweets for "+SEARCH_TERM+" :"
-    # There are different kinds of streams: public stream, user stream, multi-user streams
-    # In this example follow #programming tag
-    # For more details refer to https://dev.twitter.com/docs/streaming-apis
     stream = tweepy.Stream(auth, l)
-    # while True:
     message = stream.filter(track=[SEARCH_TERM])
-    #     print "Message: "
-    #     print message
-    #     #produce(producer, TOPIC, )
-
-    #print l.on_data(stream)
-    #stream.filter(track=['0'.format(sys.argv[1])])
