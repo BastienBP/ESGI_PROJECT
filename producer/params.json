@@ -9,7 +9,7 @@
         "broker2":"ip-172-31-15-237.us-west-2.compute.internal",
         "broker3":"ip-172-31-5-184.us-west-2.compute.internal"
     },
-    "server_port" : 6667,
-    "zookieper_port": 2181
+    "server_port" : "6667",
+    "zookieper_port": "2181"
 
 }
