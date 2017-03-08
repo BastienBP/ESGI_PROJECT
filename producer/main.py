@@ -10,7 +10,7 @@ import datetime
 SEARCH_TERM = sys.argv[1]
 
 
-with open('config.json') as f:
+with open('../params/config.json') as f:
     tokens = json.loads(f.read())
 with open("../params/params.json") as f:
     data = json.load(f)
