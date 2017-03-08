@@ -156,7 +156,6 @@ def get_tweet(consumer):
 
 
 if __name__ == '__main__':
-        config_parser_first_launch()
         consumer = get_consumer_kafkaConsumer()
 
         id, message, date_month = get_tweet(consumer)
