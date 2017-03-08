@@ -108,9 +108,9 @@ def get_tweet(consumer):
                             print len(messages)
                             if len(messages)==5:
                                 #print messages
-                                cur.execute("create table if not exists kafka(ID varchar(255), value string, time string)")
+                                cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                                 messages =  str(messages).replace('[','').replace(']','')
-                                stmt = "INSERT INTO kafka VALUES " + messages
+                                stmt = "INSERT INTO "+table_hive+" VALUES " + messages
                                 print stmt
                                 cur.execute(stmt)
                                 messages = []
