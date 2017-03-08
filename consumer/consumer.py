@@ -48,8 +48,8 @@ def get_tweet(consumer):
                         if len(messages)==30:
                             #print messages
                             cur.execute("create table if not exists kafka(ID varchar(255), value string, time string)")
-                            messages =  str(messages).replace('[','').replace(']','')
-                            stmt = "INSERT INTO kafka VALUES " + messages 
+                            messages = ','.join(str(messages[i]) for i in range(len(messages)))
+                            stmt = "INSERT INTO kafka VALUES " + messages
                             print stmt
                             cur.execute(stmt)
                             messages = []
@@ -69,4 +69,3 @@ if __name__ == '__main__':
         consumer = get_consumer_kafkaConsumer()
         id, message, date_month = get_tweet(consumer)
         print id, message, date_month
-

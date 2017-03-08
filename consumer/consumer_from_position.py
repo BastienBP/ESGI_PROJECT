@@ -81,7 +81,7 @@ def get_tweet(consumer):
                             if len(messages)==5:
                                 #print messages
                                 cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
-                                messages =  str(messages).replace('[','').replace(']','')
+                                messages = ','.join(str(messages[i]) for i in range(len(messages)))
                                 stmt = "INSERT INTO "+table_hive+" VALUES " + messages
                                 print stmt
                                 cur.execute(stmt)
@@ -109,7 +109,7 @@ def get_tweet(consumer):
                             if len(messages)==5:
                                 #print messages
                                 cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
-                                messages =  str(messages).replace('[','').replace(']','')
+                                messages = ','.join(str(messages[i]) for i in range(len(messages)))
                                 stmt = "INSERT INTO "+table_hive+" VALUES " + messages
                                 print stmt
                                 cur.execute(stmt)
