@@ -17,6 +17,8 @@ with open("params.json") as f:
 broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']
 broker3 = data['cluster']['broker3']
+server_port = data['server_port']
+zookieper_port = data['zookieper_port']
 consumer_key = tokens['CONSUMER_KEY']
 consumer_secret = tokens['CONSUMER_SECRET']
 access_token = tokens['ACCESS_TOKEN']
@@ -47,14 +49,14 @@ def produce(producer, topic, msg):
         print str(e)
         return str(e)
 
-cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':2181 --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
+cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':'+zookieper_port+' --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
 t, d = execCmd(cmd)
 if t is 0 and d:
 	print 'Topic well created..'
 if not d:
 	print TOPIC + ' already created..'
 print "Connection to 104.199.104.122:9092"
-cluster_list = [broker1+':6667',broker2+':6667',broker1+':6667']
+cluster_list = [broker1+':'+server_port,broker2+':'+server_port,broker3+':'+server_port]
 producer = get_producer(cluster_list)
 
 
