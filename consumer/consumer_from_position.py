@@ -13,7 +13,7 @@ from kafka import TopicPartition
 import pyhs2
 import json
 
-with open("params.json") as f:
+with open("../params/params.json") as f:
     data = json.load(f)
 server_port = data['server_port']
 lenght_bloc = data['lenght_bloc']
