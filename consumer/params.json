@@ -4,6 +4,7 @@
     "user_hive": "hive",
     "password_hive": "admin",
     "database_hive": "default",
+    "log_file" : "./consumer.out",
     "table_hive" : "kafka",
     "cluster":{
         "broker1":"ip-172-31-15-110.us-west-2.compute.internal:6667",
