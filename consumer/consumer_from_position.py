@@ -112,7 +112,7 @@ def get_tweet(consumer):
                                 print stmt
                                 cur.execute(stmt)
                                 messages = []
-                                print "New offset! ->"+ current_offset
+                                print "New offset! ->"+ str(current_offset)
                                 write_offset(current_offset)
 
                         		#cur.execute("create table if not exists twitter_grippe(ID varchar(255), tweet string, date_month string)")
