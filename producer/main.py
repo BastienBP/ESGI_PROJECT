@@ -12,15 +12,20 @@ SEARCH_TERM = sys.argv[1]
 
 with open('config.json') as f:
     tokens = json.loads(f.read())
-
+with open("params.json") as f:
+    data = json.load(f)
+broker1 = data['cluster']['broker1']
+broker2 = data['cluster']['broker2']
+broker3 = data['cluster']['broker3']
 consumer_key = tokens['CONSUMER_KEY']
 consumer_secret = tokens['CONSUMER_SECRET']
 access_token = tokens['ACCESS_TOKEN']
 access_token_secret = tokens['ACCESS_SECRET']
+TOPIC = data['topic']
 
 ################################################################################
 
-TOPIC = 'twitter_sante2'
+
 
 def execCmd(cmd):
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -42,14 +47,14 @@ def produce(producer, topic, msg):
         print str(e)
         return str(e)
 
-cmd = 'kafka-topics.sh --create --zookeeper ip-172-31-15-110.us-west-2.compute.internal:2181 --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
+cmd = 'kafka-topics.sh --create --zookeeper '+broker1+':2181 --replication-factor 3 --partitions 3 --topic ' + TOPIC + ' &'
 t, d = execCmd(cmd)
 if t is 0 and d:
 	print 'Topic well created..'
 if not d:
 	print TOPIC + ' already created..'
 print "Connection to 104.199.104.122:9092"
-cluster_list = ['ip-172-31-15-110.us-west-2.compute.internal:6667','ip-172-31-15-237.us-west-2.compute.internal:6667','ip-172-31-5-184.us-west-2.compute.internal:6667']
+cluster_list = [broker1+':6667',broker2+':6667',broker1+':6667']
 producer = get_producer(cluster_list)
 
 
@@ -90,4 +95,3 @@ if __name__ == '__main__':
 
     #print l.on_data(stream)
     #stream.filter(track=['0'.format(sys.argv[1])])
-
