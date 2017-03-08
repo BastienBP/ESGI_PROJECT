@@ -87,8 +87,8 @@ def get_tweet(consumer):
                         logger.info("Connected to hive")
                         with conn.cursor() as cur:
                             #Show databases
-                            logger.info("Current database:"+cur.getDatabases())
-                            logger.info('retrieving messages...')
+                            current_database = cur.getDatabases()
+                            logger.info("Current database:"+str(current_database))
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
@@ -117,9 +117,7 @@ def get_tweet(consumer):
                         with conn.cursor() as cur:
                             #Show databases
                             current_database = cur.getDatabases()
-                            str(current_database)
-                            print type(current_database)
-                            logger.info("Current database")
+                            logger.info("Current database:"+str(current_database))
 
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
