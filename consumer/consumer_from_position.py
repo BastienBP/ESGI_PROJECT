@@ -81,16 +81,13 @@ def get_tweet(consumer):
             ############
             for message in consumer:
                 if message is not None:
-                    logger.info('messages available from Kafka')
                     current_offset = message.offset
-
-
-                    print current_offset
+                    logger.info('retrieving message n_° %s' % current_offset)
                     with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
-                        print "Connected to hive"
+                        logger.info("Connected to hive")
                         with conn.cursor() as cur:
                             #Show databases
-                            print cur.getDatabases()
+                            logger.info("Current database:"+cur.getDatabases())
                             logger.info('retrieving messages...')
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
@@ -111,16 +108,16 @@ def get_tweet(consumer):
 
             for message in get_consumer_kafkaConsumer_seek(cfg_offset):
                 if message is not None:
-                    logger.info('messages available from Kafka')
                     current_offset = message.offset
+                    logger.info('retrieving message n_° %s' % current_offset)
                     print current_offset
                         #print message.offset, message.value.replace('"','\"'), time.strftime("%Y%m")
                     with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
-                        print "Connected to hive"
+                        logger.info("Connected to hive")
                         with conn.cursor() as cur:
                             #Show databases
-                            print cur.getDatabases()
-                            logger.info('retrieving messages...')
+                            logger.info("Current database:"+cur.getDatabases())
+
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
