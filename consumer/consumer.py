@@ -23,6 +23,19 @@ broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']
 broker3 = data['cluster']['broker3']
 
+####### LOGGING CONFIG #######
+logging.basicConfig()
+logger = logging.getLogger('consumer')
+logger.setLevel(logging.INFO)#ERROR
+logger.info("initialize logger")
+logger.propagate = False
+fh = RotatingFileHandler(log_file, maxBytes = 2*1024*1024, backupCount = 5)# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+logger.info("initialize logger finished")
+############################
+
 topic = TopicPartition(topic,0)
 
 
@@ -38,21 +51,22 @@ def get_tweet(consumer):
         messages = []
         for message in consumer:
             if message is not None:
-                    #print message.offset, message.value.replace('"','\"'), time.strftime("%Y%m")
-
-            	with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
-                    print "Connected to hive"
+                current_offset = message.offset
+                logger.info('retrieving message n_° %s' % current_offset)
+                with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
+                    logger.info("Connected to hive")
                     with conn.cursor() as cur:
                         #Show databases
-                        print cur.getDatabases()
-                        print "retrieving messages"
+                        current_database = cur.getDatabases()
+                        logger.info("Current database:"+str(current_database))
                         #while len(messages)<31:
                         messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
-                        if len(messages)==30:
+                        print len(messages)
+                        if len(messages)==5:
                             #print messages
-                            cur.execute("create table if not exists kafka(ID varchar(255), value string, time string)")
+                            cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                             messages = ','.join(str(messages[i]) for i in range(len(messages)))
-                            stmt = "INSERT INTO kafka VALUES " + messages
+                            stmt = "INSERT INTO "+table_hive+" VALUES " + messages
                             print stmt
                             cur.execute(stmt)
                             messages = []
