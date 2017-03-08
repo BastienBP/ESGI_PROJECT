@@ -61,6 +61,9 @@ def produce(producer, topic, msg):
     try:
         producer.send(topic, msg, partition=0, timestamp_ms=datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'))
         print 'Still sending to the partition 0'
+        logger.info("Send message n_° %s" %msg)
+        print msg
+
     except Exception as e:
         print str(e)
         return str(e)
