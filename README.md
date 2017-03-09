@@ -40,7 +40,9 @@ L'arborescence suit la logique *produce/consume*, avec 4 dossiers:
 
 - Un dossier */producer* contenant le *producer.py* : c'est lui qui enverra les messages dans le topic.
 - Un dossier */consumer* contenant deux consumer:
-⋅⋅* un *consumer_from_position.py* 
+⋅⋅* un *consumer_from_position.py*
+2. Another item
+⋅⋅* Unordered sub-list.
 
 
 ## SOME FACTS ABOUT KAFKA'S TOPICS
