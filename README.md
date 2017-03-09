@@ -13,18 +13,23 @@
 ## LE PRINCIPE DE FONCTIONNEMENT:
 
 Le but est d'insérer des données que nous recevons en flot continue dans Hive. Partons du principe que notre cluster Hadoop sous distribution Hortonworks est déjà installé et configuré. Nous disposons donc:
-* d'un ou plusieurs brokers kafka géré(s) par Zookieper
+* D'un ou plusieurs brokers kafka géré(s) par Zookieper
 * Un entrepôt de données Hive ainsi que sa vue dans Hortonworks
+
 
 
 Nous devrons donc nous occuper:
 
-* De la récupération en flot continue (stream) de tweets selon un # défini.
+* De la récupération en flot continue (stream) de tweets selon un # défini. (il s'agit ici d'un exemple: le client pourra selon son bon vouloir envoyer le type de message qu'il veut)
 * De l'envoie de ces tweet dans les brokers kafka.
-* De la récupération de ces messages par paquet de X messages (que l'on pourra définir)
+* Du stockage de ces messages par paquet de X messages (que l'on pourra définir)
+* De l'envoie de ces messages dans Hive
 
+* **Toute la configuration s'effectue dans le fichier *params.json* ainsi que *config.json* se trouvant dans le** **dossier /params**
 
+![alt text](https://kafka.apache.org/images/kafka-apis.png "Logo Kafka")
 
+## L'ARBORESCENCE DES FICHIERS:
 
 
 ![alt text](https://kafka.apache.org/images/kafka-apis.png "Logo Kafka")
