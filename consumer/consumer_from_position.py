@@ -88,7 +88,7 @@ def get_tweet(consumer):
         if cfg_statut == "false":
             position = consumer.position(topic)
             first_offset = consumer.next()
-            first_offset = first_offset.offset
+            first_offset = first_offset.offset - 1
             print first_offset
             write_offset(first_offset)
             ############
