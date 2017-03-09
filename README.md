@@ -67,3 +67,10 @@ python consumer_from_position.py
 ``` bash
 python producer.py bigdata
 ```
+
+3. Lorsque l'on requête la table créée (nommée ici Kafka), on a bien nos messages:
+``` bash
+SELECT * FROM kafka;
+```
+
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/vue_hive.png "fonctionnement Kafka")
