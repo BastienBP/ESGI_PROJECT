@@ -27,7 +27,7 @@ Nous devrons donc nous occuper:
 
 * **Toute la configuration s'effectue dans le fichier *params.json* ainsi que *config.json* se trouvant dans le** **dossier /params**
 
-![alt text](https://kafka.apache.org/images/kafka-apis.png "Logo Kafka")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/src/master/fonctionnement.png "fonctionnement Kafka")
 
 ## L'ARBORESCENCE DES FICHIERS:
 
