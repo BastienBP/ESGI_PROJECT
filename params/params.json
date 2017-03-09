@@ -1,5 +1,5 @@
 {
-    "topic" : "kafka_test3",
+    "topic" : "kafka_test4",
     "host_hive": "localhost",
     "user_hive": "hive",
     "password_hive": "admin",
