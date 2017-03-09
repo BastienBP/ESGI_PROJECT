@@ -44,7 +44,8 @@ L'arborescence suit la logique *produce/consume*, avec 4 dossiers:
 
     -  un *consumer.py* Celui-ci se contente d'envoyer les messages par paquet dans Hive après les avoir récupéré dans le topic correspondant. **ATTENTION** Ces messages seront lus en streaming. Ainsi si ce consumer n'est pas lancé ou ne fonctionne pas au moment de la diffusion des messages par le producer, il ne pourra pas les récupérer.
     -  un *consumer_from_position.py* qui récupère comme le fichier précédant les messages depuis un topic. Cependant, celui-ci se base sur un système permettant de récupérer les messages depuis le dernier *offset* du dernier paquet envoyé. Ainsi, si une erreur survient et que ce *consumer* est arrêté, il récupèrera quand même les messages envoyés par le producer même s'il n'était pas en cours d'exécution.
-    \n [Voir README.md du consumer](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/src/master/consumer/README.md)
+
+    [Voir README.md du consumer](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/src/master/consumer/README.md)
 
 
 ## SOME FACTS ABOUT KAFKA'S TOPICS
