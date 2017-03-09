@@ -40,7 +40,7 @@ L'arborescence suit la logique *produce/consume*, avec 4 dossiers:
 
 - Un dossier */producer* contenant le *producer.py* : c'est lui qui enverra les messages dans le topic.
 - Un dossier */consumer* contenant deux consumer:
-    -  un *consumer.py* Celui-ci se contente d'envoyer les messages par paquet. <aside class="warning">
+    -  un *consumer.py* Celui-ci se contente d'envoyer les messages par paquet. <aside class="notice">
 You must replace `meowmeowmeow` with your personal API key.
 </aside>
     -  un *consumer_from_position.py*
