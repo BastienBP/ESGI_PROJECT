@@ -87,8 +87,8 @@ def get_tweet(consumer):
         cfg_statut = cfg.get("OFFSET","is_reloaded?")
         if cfg_statut == "false":
             position = consumer.position(topic)
-            first_offset = consumer.next() - 1
-            first_offset = first_offset.offset
+            first_offset = consumer.next()
+            first_offset = first_offset.offset - 1
             write_offset(first_offset)
             ############
             for message in consumer:
