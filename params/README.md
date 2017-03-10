@@ -13,7 +13,7 @@
 
 Ces données se trouvent dans *Services> Hive> Config> Advanced*
 
-![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/hive_params.png "arborescence")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/hive_params.png "Paramètres Hive")
 
 * lenght_bloc : Nombre de messages constituant les blocs
 * log_file: Différents chemins de destination des fichiers log
@@ -21,16 +21,16 @@ Ces données se trouvent dans *Services> Hive> Config> Advanced*
 * cluster: Liste des adresses des différents brokers Kafka.
 La liste des brokers se trouve dans *Services > Kafka> Kafka Brokers*. **ATTENTION: penser à enlever le port 2181 lors du remplissage de la liste!**
 
-![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/kafka-brokers.png "arborescence")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/kafka-brokers.png "Brokers Kafka")
 
 
 * server_port : Port des brokers kafka:
 
-![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/zookieper_port.png "arborescence")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/zookieper_port.png "Port Zookieper")
 
 * zookieper_port: Port de zookieper
 
-![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/server_port.png "arborescence")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/server_port.png "Port des Serveurs")
 
 
 ## Le fichier config.json:
@@ -38,4 +38,4 @@ La liste des brokers se trouve dans *Services > Kafka> Kafka Brokers*. **ATTENTI
 **Ce fichier comporte les tokens et keys disponibles après avoir configuer son compte Twitter développeur**
 Toutes ces informations sont accessible au moment de la création d'une application twitter:
 
-![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/twitter_dev_app.png "arborescence")
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/twitter_dev_app.png "Application de dev Twitter")
