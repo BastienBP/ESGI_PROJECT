@@ -39,7 +39,7 @@ Nous devrons donc nous occuper:
 L'arborescence suit la logique *produce/consume*, avec 4 dossiers:  
 
 - Un dossier */producer* contenant le *producer.py* : c'est lui qui enverra les messages dans le topic.
-[Voir README.md du producer](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/src/master/producer/README.md)
+
 
 - Un dossier */consumer* contenant deux consumer:
     -  un *consumer.py* Celui-ci se contente d'envoyer les messages par paquet dans Hive après les avoir récupéré dans le topic correspondant. **ATTENTION** Ces messages seront lus en streaming. Ainsi si ce consumer n'est pas lancé ou ne fonctionne pas au moment de la diffusion des messages par le producer, il ne pourra pas les récupérer.
