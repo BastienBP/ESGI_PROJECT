@@ -35,7 +35,7 @@ La liste des brokers se trouve dans *Services > Kafka> Kafka Brokers*. **ATTENTI
 
 ## Le fichier config.json:
 
-**Ce fichier comporte les tokens et keys disponibles après avoir configuer son compte Twitter développeur**
-Toutes ces informations sont accessible au moment de la création d'une application twitter:
+**Ce fichier comporte les tokens et keys disponibles après avoir configué son compte Twitter développeur**
+Toutes ces informations sont accessibles au moment de la création d'une application twitter:
 
 ![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/twitter_dev_app.png "Application de dev Twitter")

@@ -23,7 +23,7 @@
 ### Quelques infos sur ce consumer (supposons la taille des blocs définie à 30 messages):
 
 * Au lancement, il définit le premier offset dans le fichier *offset.cfg*
-* Si le consumer s'arrête pendant l'envoie de messages **avant** la consitution du premier bloc de 30 messages, au relancement du consumer, il se basera sur ce premier offset
+* Si le consumer s'arrête pendant l'envoie de messages **avant** la constitution du premier bloc de 30 messages, au relancement du consumer, il se basera sur ce premier offset
 * À chaque fin de création de bloc, il stock l'offset du dernier message de ce bloc dans le fichier *offset.cfg*
 * Si par exemple, pendant l'envoie en flot continue du producer, le consumer s'arrête après avoir stocké seulement 15 messages, il pourra au relancement, se baser sur le dernier offset du bloc précédent afin de continuer à récupérer les messages depuis celui-ci.
 * dispose d'un fichier *consumer_from_position.out*, contenant toutes les infos et logs le concernant.

@@ -12,7 +12,7 @@
 
 ## LE PRINCIPE DE FONCTIONNEMENT:
 
-Le but est d'insérer des données que nous recevons en flot continue dans Hive. Partons du principe que notre cluster Hadoop sous distribution Hortonworks est déjà installé et configuré. Nous disposons donc:
+Le but est d'insérer des données que nous recevons en flot continue dans Hive. Partons du principe que notre cluster Hadoop sous distribution Hortonworks ainsi que Hive et les brokers Kafka sont déjà installés et configurés. Nous disposons donc:
 * D'un ou plusieurs brokers kafka géré(s) par Zookieper
 * Un entrepôt de données Hive ainsi que sa vue dans Hortonworks
 
@@ -74,3 +74,9 @@ SELECT * FROM kafka;
 ```
 
 ![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/vue_hive.png "fonctionnement Kafka")
+
+## LET'S GO! /2:
+
+### Ci dessous, le schéma avec un exemple de cas d'utilisation
+
+![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/cas d'utilisation.png "cas d'utilisation Kafka")
