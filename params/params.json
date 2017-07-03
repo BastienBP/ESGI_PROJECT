@@ -6,15 +6,15 @@
     "database_hive": "default",
     "lenght_bloc" : 5,
     "log_file":{
-        "consumer_from_position":"../logger_kafka/consumer_from_position.out",
-        "consumer": "../logger_kafka/consumer.out",
-        "producer": "../logger_kafka/producer.out"
+        "consumer_from_position":"/data/logger_kafka/consumer_from_position.out",
+        "consumer": "/data/logger_kafka/consumer.out",
+        "producer": "/data/logger_kafka/producer.out"
     },
     "table_hive" : "kafka",
     "cluster":{
-        "broker1":"ip-172-31-15-110.us-west-2.compute.internal",
-        "broker2":"ip-172-31-15-237.us-west-2.compute.internal",
-        "broker3":"ip-172-31-5-184.us-west-2.compute.internal"
+        "broker1":"ip-172-31-13-127.us-west-2.compute.internal",
+        "broker2":"ip-172-31-10-193.us-west-2.compute.internal",
+        "broker3":"ip-172-31-0-238.us-west-2.compute.internal"
     },
     "server_port" : "6667",
     "zookieper_port": "2181"

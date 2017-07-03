@@ -1,6 +1,7 @@
 #from twitter import StdOutListener
 #rom twitter import tweepy
 
+import urllib3
 import logging
 import logging.config
 from logging.handlers import RotatingFileHandler
@@ -14,9 +15,9 @@ import datetime
 SEARCH_TERM = sys.argv[1]
 
 
-with open('../params/config.json') as f:
+with open('/data/params/config.json') as f:
     tokens = json.loads(f.read())
-with open("../params/params.json") as f:
+with open("/data/params/params.json") as f:
     data = json.load(f)
 broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']

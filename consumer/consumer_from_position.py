@@ -13,7 +13,7 @@ from kafka import TopicPartition
 import pyhs2
 import json
 
-with open("../params/params.json") as f:
+with open("/data/params/params.json") as f:
     data = json.load(f)
 server_port = data['server_port']
 lenght_bloc = data['lenght_bloc']
@@ -81,7 +81,7 @@ def get_tweet(consumer):
         messages = []
         #########################################
         cfg = config_parser()
-        cfg.read("offset.cfg")
+        cfg.read("/data/consumer/offset.cfg")
         #cfg.add_section("OFFSET")
         cfg_offset = cfg.get("OFFSET","last_offset")
         cfg_statut = cfg.get("OFFSET","is_reloaded?")
