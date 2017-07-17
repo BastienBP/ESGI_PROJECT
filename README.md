@@ -80,3 +80,4 @@ SELECT * FROM kafka;
 ### Ci dessous, le schéma avec un exemple de cas d'utilisation
 
 ![alt text](https://gitbox.affini-tech.net/Affini-Tech/Kafka-Hadoop/raw/master/images/cas_use.png "cas d'utilisation Kafka")
+# ESGI_PROJECT
