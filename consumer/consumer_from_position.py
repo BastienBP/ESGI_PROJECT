@@ -13,7 +13,7 @@ from kafka import TopicPartition
 import pyhs2
 import json
 
-with open("/data/params/params.json") as f:
+with open("params.json") as f:
     data = json.load(f)
 server_port = data['server_port']
 lenght_bloc = data['lenght_bloc']
@@ -81,7 +81,7 @@ def get_tweet(consumer):
         messages = []
         #########################################
         cfg = config_parser()
-        cfg.read("/data/consumer/offset.cfg")
+        cfg.read("offset.cfg")
         #cfg.add_section("OFFSET")
         cfg_offset = cfg.get("OFFSET","last_offset")
         cfg_statut = cfg.get("OFFSET","is_reloaded?")
@@ -96,6 +96,7 @@ def get_tweet(consumer):
                 if message is not None:
                     current_offset = message.offset
                     print current_offset
+                    print message.value
                     logger.info('retrieving message n_° %s' % current_offset)
                     with pyhs2.connect(host=host_hive,port=10000,authMechanism="PLAIN",user=user_hive,password=password_hive,database=database_hive) as conn:
                         logger.info("Connected to hive")
@@ -107,7 +108,7 @@ def get_tweet(consumer):
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
                             if len(messages)==lenght_bloc:
-                                #print messages
+                                print messages
                                 cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                                 messages = ','.join(str(messages[i]) for i in range(len(messages)))
                                 stmt = "INSERT INTO "+table_hive+" VALUES " + messages
@@ -124,6 +125,7 @@ def get_tweet(consumer):
             for message in get_consumer_kafkaConsumer_seek(cfg_offset):
                 if message is not None:
                     current_offset = message.offset
+		    print message.value
                     logger.info('retrieving message n_° %s' % current_offset)
                     print current_offset
                         #print message.offset, message.value.replace('"','\"'), time.strftime("%Y%m")
@@ -137,8 +139,9 @@ def get_tweet(consumer):
                             #while len(messages)<31:
                             messages.append((message.offset, message.value.replace('"','\22').encode('ascii', 'ignore'), time.strftime("%Y%m")))
                             print len(messages)
+		            #print messages
                             if len(messages)==lenght_bloc:
-                                #print messages
+                                print messages
                                 cur.execute("create table if not exists "+table_hive+"(ID varchar(255), value string, time string)")
                                 messages = ','.join(str(messages[i]) for i in range(len(messages)))
                                 stmt = "INSERT INTO "+table_hive+" VALUES " + messages

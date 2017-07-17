@@ -1,0 +1,11 @@
+2017-07-02 10:20:33,656 - producer - INFO - initialize logger finished
+2017-07-02 10:20:33,659 - producer - INFO - topic well Created
+2017-07-02 10:20:33,659 - producer - INFO - Connection to ip-172-31-15-110.us-west-2.compute.internal
+2017-07-02 10:22:40,717 - producer - INFO - initialize logger finished
+2017-07-02 10:22:40,719 - producer - INFO - topic well Created
+2017-07-02 10:22:40,720 - producer - INFO - Connection to ip-172-31-13-127.us-west-2.compute.internal
+2017-07-02 10:22:52,805 - producer - INFO - message well sent
+2017-07-03 10:02:03,368 - producer - INFO - initialize logger finished
+2017-07-03 10:02:03,371 - producer - INFO - topic well Created
+2017-07-03 10:02:03,372 - producer - INFO - Connection to ip-172-31-13-127.us-west-2.compute.internal
+2017-07-03 10:02:27,046 - producer - INFO - message well sent

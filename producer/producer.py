@@ -15,9 +15,9 @@ import datetime
 SEARCH_TERM = sys.argv[1]
 
 
-with open('/data/params/config.json') as f:
+with open('config.json') as f:
     tokens = json.loads(f.read())
-with open("/data/params/params.json") as f:
+with open("params.json") as f:
     data = json.load(f)
 broker1 = data['cluster']['broker1']
 broker2 = data['cluster']['broker2']
